@@ -4,3 +4,9 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
+module.exports = {
+  images: {
+    domains: ['i.dummyjson.com'], // Add any other allowed domains here
+  },
+};

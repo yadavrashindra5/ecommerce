@@ -1,0 +1,13 @@
+@import "../../../styles/theme";
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    row-gap: 0.5em;
+    @include breakpoints("tab"){
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1em;
+    }
+}

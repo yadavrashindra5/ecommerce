@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
@@ -11,3 +12,7 @@ export default function handler(
 ) {
   res.status(200).json({ name: 'John Doe' })
 }
+
+export const client=axios.create({
+  baseURL:"https://dummyjson.com"
+})
