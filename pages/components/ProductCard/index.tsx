@@ -5,7 +5,8 @@ import { IProduct } from "@/utils/types";
 import cx from "classnames";
 
 const ProductCard = (props: IProduct) => {
-  const { price, thumbnail, id, title, images } = props;
+  const { price, thumbnail, id, title, images, state } = props;
+  const stateValue = state?.get(id);
   return (
     <main
       className={style.mainContainer}
@@ -29,12 +30,15 @@ const ProductCard = (props: IProduct) => {
           <div className={style.title}>{title}</div>
           <section className={style.addSection}>
             <div className={style.price}>${price}</div>
-            <button className={style.cartButton}>Add to Cart</button>
-            <section className={cx(style.cartButton, style.productQuantity)}>
-              <div>-</div>
-              <div>0</div>
-              <div>+</div>
-            </section>
+            {stateValue?.id === id ? (
+              <section className={cx(style.cartButton, style.productQuantity)}>
+                <div>-</div>
+                <div>{stateValue?.count}</div>
+                <div>+</div>
+              </section>
+            ) : (
+              <button className={style.cartButton}>Add to Cart</button>
+            )}
           </section>
         </section>
       </section>
