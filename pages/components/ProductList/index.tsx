@@ -3,7 +3,6 @@ import { IProduct } from "@/utils/types";
 import { useEffect, useState } from "react";
 import ProductCard from "../ProductCard";
 import style from "./style.module.scss";
-import { useDispatch, useSelector } from "react-redux";
 
 const ProductList = () => {
   const [productState, setProductState] = useState<IProduct[]>([]);

@@ -29,12 +29,12 @@ const ProductCard = (props: IProduct) => {
           <div className={style.title}>{title}</div>
           <section className={style.addSection}>
             <div className={style.price}>${price}</div>
-            <button className={style.cartButton}>Add to Cart</button>
             <section className={cx(style.cartButton, style.productQuantity)}>
               <div>-</div>
               <div>0</div>
               <div>+</div>
             </section>
+            <button className={style.cartButton}>Add to Cart</button>
           </section>
         </section>
       </section>
