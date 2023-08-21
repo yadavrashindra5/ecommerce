@@ -32,12 +32,12 @@ const ProductCard = (props: IProduct) => {
             <div className={style.price}>${price}</div>
             {stateValue?.id === id ? (
               <section className={cx(style.cartButton, style.productQuantity)}>
-                <div>-</div>
+                <div data-id='substract'>-</div>
                 <div>{stateValue?.count}</div>
-                <div>+</div>
+                <div data-id='addition'>+</div>
               </section>
             ) : (
-              <button className={style.cartButton}>Add to Cart</button>
+              <button className={style.cartButton} data-id="add-to-cart">Add to Cart</button>
             )}
           </section>
         </section>

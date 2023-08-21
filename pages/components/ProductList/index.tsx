@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "../ProductCard";
 import style from "./style.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { incNumber } from "@/pages/actions";
+import { incNumber, decNumber } from "@/pages/actions";
 
 const ProductList = () => {
   const [productState, setProductState] = useState<IProduct[]>([]);
@@ -31,10 +31,23 @@ const ProductList = () => {
   const state = useSelector((state: any) => state.changeTheNumber);
   const dispatch = useDispatch();
   const cardClickHandler = (e: any) => {
-    const productInfo = JSON.parse(
-      e.target.closest("[data-info]").getAttribute("data-info")
-    );
-    dispatch(incNumber(productInfo.id));
+    console.log(e.target.getAttribute("data-id"));
+    if (e.target.getAttribute("data-id") === "addition") {
+      const productInfo = JSON.parse(
+        e.target.closest("[data-info]").getAttribute("data-info")
+      );
+      dispatch(incNumber(productInfo.id));
+    } else if (e.target.getAttribute("data-id") === "substract") {
+      const productInfo = JSON.parse(
+        e.target.closest("[data-info]").getAttribute("data-info")
+      );
+      dispatch(decNumber(productInfo.id));
+    } else if(e.target.getAttribute('data-id')==='add-to-cart'){
+      const productInfo = JSON.parse(
+        e.target.closest("[data-info]").getAttribute("data-info")
+      );
+      dispatch(incNumber(productInfo.id));
+    }
     setAddToCartButton(!addToCartButtonState);
     e.stopPropagation();
   };
