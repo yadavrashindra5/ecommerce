@@ -1,5 +1,6 @@
 import Head from "next/head";
 import ProductList from "./components/ProductList";
+import Navbar from "./components/Navbar";
 
 const Home = () => {
   return (
@@ -10,7 +11,12 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div onClick={(()=>{console.log("Hello")})}>
+      <Navbar />
+      <div
+        onClick={() => {
+          console.log("Hello");
+        }}
+      >
         <ProductList />
       </div>
     </>

@@ -1,0 +1,27 @@
+@import "../../../styles/theme";
+
+.mainContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1em;
+  position: sticky;
+  top: 0px;
+  background-color: #d1d2d2;
+  @include breakpoints("tab") {
+    padding-right: 2.5em;
+  }
+  @include breakpoints("desktop") {
+    padding-right: 3.5em;
+  }
+  .innerContainer {
+    position: relative;
+    .count {
+      position: absolute;
+      top: 0.375em;
+      left: 1em;
+      font-size: 1.3em;
+      font-weight: 900;
+      color: black;
+    }
+  }
+}
