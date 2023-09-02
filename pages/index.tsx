@@ -1,8 +1,10 @@
 import Head from "next/head";
 import ProductList from "./components/ProductList";
 import Navbar from "./components/Navbar";
+import { useState } from "react";
 
 const Home = () => {
+  const [count, setCount] = useState(0);
   return (
     <>
       <Head>
@@ -11,8 +13,8 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
-      <ProductList />
+      <Navbar count={count} />
+      <ProductList setCount={setCount} />
     </>
   );
 };

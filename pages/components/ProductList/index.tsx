@@ -6,9 +6,10 @@ import style from "./style.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { incNumber, decNumber } from "@/pages/actions";
 
-const ProductList = () => {
+const ProductList = (props: any) => {
   const [productState, setProductState] = useState<IProduct[]>([]);
   const [addToCartButtonState, setAddToCartButton] = useState(false);
+  const { setCount } = props;
   useEffect(() => {
     const fetchProductData = async () => {
       await client.get("/products").then((response) => {
@@ -41,7 +42,7 @@ const ProductList = () => {
         e.target.closest("[data-info]").getAttribute("data-info")
       );
       dispatch(decNumber(productInfo.id));
-    } else if(e.target.getAttribute('data-id')==='add-to-cart'){
+    } else if (e.target.getAttribute("data-id") === "add-to-cart") {
       const productInfo = JSON.parse(
         e.target.closest("[data-info]").getAttribute("data-info")
       );
@@ -50,6 +51,8 @@ const ProductList = () => {
     setAddToCartButton(!addToCartButtonState);
     e.stopPropagation();
   };
+  console.log(state, "state");
+  setCount(state.count);
 
   return (
     <main className={style.mainContainer} onClick={cardClickHandler}>
