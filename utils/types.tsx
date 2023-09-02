@@ -1,6 +1,5 @@
 interface IState {
   id: number;
-  status: boolean;
   count: number;
 }
 export interface IProduct {

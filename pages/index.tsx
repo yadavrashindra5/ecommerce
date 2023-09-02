@@ -12,13 +12,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <div
-        onClick={() => {
-          console.log("Hello");
-        }}
-      >
-        <ProductList />
-      </div>
+      <ProductList />
     </>
   );
 };

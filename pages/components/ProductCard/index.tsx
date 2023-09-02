@@ -6,7 +6,8 @@ import cx from "classnames";
 
 const ProductCard = (props: IProduct) => {
   const { price, thumbnail, id, title, images, state } = props;
-  const stateValue = state?.get(id);
+  const { map, count } = state;
+  const stateValue = map.get(id);
   return (
     <main
       className={style.mainContainer}
@@ -32,12 +33,14 @@ const ProductCard = (props: IProduct) => {
             <div className={style.price}>${price}</div>
             {stateValue?.id === id ? (
               <section className={cx(style.cartButton, style.productQuantity)}>
-                <div data-id='substract'>-</div>
+                <div data-id="substract">-</div>
                 <div>{stateValue?.count}</div>
-                <div data-id='addition'>+</div>
+                <div data-id="addition">+</div>
               </section>
             ) : (
-              <button className={style.cartButton} data-id="add-to-cart">Add to Cart</button>
+              <button className={style.cartButton} data-id="add-to-cart">
+                Add to Cart
+              </button>
             )}
           </section>
         </section>

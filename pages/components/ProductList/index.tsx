@@ -31,7 +31,6 @@ const ProductList = () => {
   const state = useSelector((state: any) => state.changeTheNumber);
   const dispatch = useDispatch();
   const cardClickHandler = (e: any) => {
-    console.log(e.target.getAttribute("data-id"));
     if (e.target.getAttribute("data-id") === "addition") {
       const productInfo = JSON.parse(
         e.target.closest("[data-info]").getAttribute("data-info")
