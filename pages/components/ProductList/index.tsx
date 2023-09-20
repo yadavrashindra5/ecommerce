@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import ProductCard from "../ProductCard";
 import style from "./style.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { incNumber, decNumber } from "@/pages/actions";
+import { countDecrease, countIncrease,insertData } from "@/pages/stores/card/CardSlice";
 
-const ProductList = (props: any) => {
-  const [productState, setProductState] = useState<IProduct[]>([]);
+const ProductList = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state: any) => state.user);
+  console.log(state,'state');
   const [addToCartButtonState, setAddToCartButton] = useState(false);
-  const { setCount } = props;
   useEffect(() => {
     const fetchProductData = async () => {
       await client.get("/products").then((response) => {
@@ -21,42 +22,39 @@ const ProductList = (props: any) => {
               price: product.price,
               thumbnail: product.thumbnail,
               images: product.images,
+              count:0
             };
           }
         );
-        setProductState([...productCollection]);
+        dispatch(insertData(productCollection));
       });
     };
     fetchProductData();
   }, []);
-  const state = useSelector((state: any) => state.changeTheNumber);
-  const dispatch = useDispatch();
+
   const cardClickHandler = (e: any) => {
     if (e.target.getAttribute("data-id") === "addition") {
       const productInfo = JSON.parse(
         e.target.closest("[data-info]").getAttribute("data-info")
       );
-      dispatch(incNumber(productInfo.id));
+      dispatch(countIncrease(productInfo))
     } else if (e.target.getAttribute("data-id") === "substract") {
       const productInfo = JSON.parse(
         e.target.closest("[data-info]").getAttribute("data-info")
       );
-      dispatch(decNumber(productInfo.id));
+      dispatch(countDecrease(productInfo))
     } else if (e.target.getAttribute("data-id") === "add-to-cart") {
       const productInfo = JSON.parse(
         e.target.closest("[data-info]").getAttribute("data-info")
       );
-      dispatch(incNumber(productInfo.id));
+      dispatch(countIncrease(productInfo))
     }
     setAddToCartButton(!addToCartButtonState);
     e.stopPropagation();
   };
-  console.log(state, "state");
-  setCount(state.count);
-
   return (
     <main className={style.mainContainer} onClick={cardClickHandler}>
-      {productState.map((product) => (
+      {state.map.map((product:IProduct) => (
         <ProductCard
           title={product.title}
           id={product.id}
@@ -64,11 +62,12 @@ const ProductList = (props: any) => {
           images={product.images}
           price={product.price}
           key={product.id}
-          state={state}
+          count={product.count}
         />
       ))}
     </main>
   );
 };
+
 
 export default ProductList;

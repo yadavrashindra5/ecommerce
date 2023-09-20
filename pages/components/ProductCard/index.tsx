@@ -1,13 +1,10 @@
-import { laptop } from "@/public";
 import Image from "next/image";
 import style from "./style.module.scss";
 import { IProduct } from "@/utils/types";
 import cx from "classnames";
 
 const ProductCard = (props: IProduct) => {
-  const { price, thumbnail, id, title, images, state } = props;
-  const { map, count } = state;
-  const stateValue = map.get(id);
+  const { price, id, title, images,count } = props;
   return (
     <main
       className={style.mainContainer}
@@ -31,10 +28,10 @@ const ProductCard = (props: IProduct) => {
           <div className={style.title}>{title}</div>
           <section className={style.addSection}>
             <div className={style.price}>${price}</div>
-            {stateValue?.id === id ? (
+            {count>0 ? (
               <section className={cx(style.cartButton, style.productQuantity)}>
                 <div data-id="substract">-</div>
-                <div>{stateValue?.count}</div>
+                <div>{count}</div>
                 <div data-id="addition">+</div>
               </section>
             ) : (

@@ -8,5 +8,5 @@ export interface IProduct {
   price: number;
   thumbnail?: string;
   images?: string[];
-  state?: Map<number,IState>;
+  count:number;
 }

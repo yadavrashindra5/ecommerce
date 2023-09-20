@@ -1,10 +1,10 @@
 import Head from "next/head";
 import ProductList from "./components/ProductList";
 import Navbar from "./components/Navbar";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  const [count, setCount] = useState(0);
+  const state = useSelector((state: any) => state.user);
   return (
     <>
       <Head>
@@ -13,8 +13,8 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar count={count} />
-      <ProductList setCount={setCount} />
+      <Navbar count={state.count} />
+      <ProductList  />
     </>
   );
 };

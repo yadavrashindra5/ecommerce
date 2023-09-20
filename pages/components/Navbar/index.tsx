@@ -1,7 +1,6 @@
 import { icon } from "@/public";
 import Image from "next/image";
 import style from "./style.module.scss";
-
 interface propsType {
   count: number;
 }
